@@ -2,13 +2,13 @@ import jinja_partials
 from flask import Flask
 
 from app.blueprints import home_bp
-from app.config import CONFIG_OBJECT
+from app.config import get_config_object
 from app.extensions import toolbar
 
 
 def create_app() -> Flask:
     app = Flask(__name__)
-    app.config.from_object(CONFIG_OBJECT)
+    app.config.from_object(get_config_object())
 
     register_extensions(app)
     register_blueprints(app)

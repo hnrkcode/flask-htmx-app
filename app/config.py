@@ -6,6 +6,7 @@ load_dotenv()
 
 
 class Config:
+    FLASK_ENV: str
     TESTING = False
     SECRET_KEY = os.environ.get("SECRET_KEY", "default_development_secret_key")
 
@@ -24,15 +25,14 @@ class TestingConfig(Config):
     TESTING = True
 
 
-app_env = os.environ.get("ENV", "development")
+def get_config_object() -> type[Config]:
+    app_env = os.environ.get("ENV", "development")
+    config_mapping: dict[str, type[Config]] = {
+        cls.FLASK_ENV: cls for cls in Config.__subclasses__()
+    }
 
-config_mapping = {
-    "development": "app.config.DevelopmentConfig",
-    "testing": "app.config.TestingConfig",
-}
+    if app_env not in config_mapping:
+        msg = "Invalid environment set in .env file."
+        raise RuntimeError(msg)
 
-CONFIG_OBJECT = config_mapping.get(app_env)
-
-if CONFIG_OBJECT is None:
-    msg = "Invalid environment set in .env file."
-    raise RuntimeError(msg)
+    return config_mapping[app_env]
