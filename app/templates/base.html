@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% block head %}
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>
+                {% block title %}
+                    Title
+                {% endblock title %}
+            </title>
+            {% block styles %}
+            {% endblock styles %}
+            {% block scripts %}
+                <script type="text/javascript"
+                        src="{{ url_for('static', filename='dist/index.min.js') }}"></script>
+            {% endblock scripts %}
+        {% endblock head %}
+    </head>
+    <body>
+        {% block content %}
+        {% endblock content %}
+    </body>
+</html>

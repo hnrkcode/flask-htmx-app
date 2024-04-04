@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "build": "parcel build --no-source-maps"
+  },
+  "shared": "app/static/dist/index.min.js",
+  "home": "app/blueprints/home/static/dist/index.min.js",
+  "targets": {
+    "shared": {
+      "source": "app/static/js/index.js"
+    },
+    "home": {
+      "source": "app/blueprints/home/static/js/index.js"
+    }
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "htmx.org": "^1.9.11"
+  }
+}

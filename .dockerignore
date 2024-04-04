@@ -1,0 +1,13 @@
+.git
+.gitignore
+.dockerignore
+.venv
+Makefile
+Dockerfile*
+docker-compose*
+requirements
+!requirements/prod.txt
+node_modules
+*.md
+.python-version
+dist

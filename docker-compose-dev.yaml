@@ -1,0 +1,24 @@
+services:
+  flask-htmx-app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: flask-htmx-app
+    ports:
+      - 5000:5000
+    env_file:
+      - .env
+    command: ["flask", "run", "--host", "0.0.0.0", "--port", "5000", "--debug"]
+    develop:
+      watch:
+        - action: sync
+          path: ./app
+          target: /usr/src/app/app
+        - action: rebuild
+          path: requirements/prod.txt
+        - action: rebuild
+          path: package.json
+        - action: rebuild
+          path: ./app/static/js
+        - action: rebuild
+          path: ./app/blueprints/home/static/js

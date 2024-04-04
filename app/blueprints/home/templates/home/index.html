@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block scripts %}
+    {{ super() }}
+    <script type="text/javascript"
+            src="{{ url_for('home_bp.static', filename='dist/index.min.js') }}"></script>
+{% endblock scripts %}
+{% block content %}
+    <h1>Home</h1>
+    <p id="random-number"></p>
+    <button hx-get="{{ url_for("home_bp.random_number") }}"
+            hx-target="#random-number">Click Me!</button>
+{% endblock content %}
