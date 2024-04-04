@@ -7,5 +7,7 @@
   },
   "[html]": {
     "editor.defaultFormatter": "monosans.djlint"
-  }
+  },
+  "python.analysis.typeCheckingMode": "strict",
+  "python.analysis.extraPaths": ["stubs"]
 }
